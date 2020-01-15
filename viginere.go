@@ -42,6 +42,7 @@ func process(key, phrase string, method Operation) string {
 func main() {
 	if len(os.Args) != 3 {
 		fmt.Println("Usage: viginere <key> <message>")
+		os.Exit(0)
 	}
 
 	key := os.Args[1]
