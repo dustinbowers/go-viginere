@@ -14,7 +14,7 @@ type Operation int
 
 const (
 	ENCRYPT Operation = iota
-	DECRYPT           = iota
+	DECRYPT
 )
 
 func process(key, phrase string, method Operation) string {
