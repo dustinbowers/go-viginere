@@ -19,7 +19,6 @@ const (
 
 func process(key, phrase string, method Operation) string {
 	output := ""
-
 	key = strings.ToUpper(key)
 	key = strings.Replace(key, " ", "", -1)
 	phrase = strings.ToUpper(phrase)
@@ -34,20 +33,13 @@ func process(key, phrase string, method Operation) string {
 		char_index := int(byte(c) - ord_start)
 		key_index := pos % key_len
 		key_ord := int(key[key_index] - ord_start)
-		grid_offset := (char_index + (key_ord * direction)) % grid_len
-		if grid_offset < 0 {
-			grid_offset += grid_len
-		}
-		code := grid[grid_offset]
-		output += string(code)
+		grid_offset := (grid_len + char_index + (key_ord * direction)) % grid_len
+		output += string(grid[grid_offset])
 	}
-
 	return output
 }
 
 func main() {
-	fmt.Println(os.Args)
-
 	if len(os.Args) != 3 {
 		fmt.Println("Usage: viginere <key> <message>")
 	}
