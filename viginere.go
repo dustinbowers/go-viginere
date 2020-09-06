@@ -13,8 +13,8 @@ var ord_start = grid[0]
 type Operation int
 
 const (
-	ENCRYPT Operation = iota
-	DECRYPT
+	ENCIPHER Operation = iota
+	DECIPHER
 )
 
 func process(key, phrase string, method Operation) string {
@@ -25,7 +25,7 @@ func process(key, phrase string, method Operation) string {
 	phrase = strings.Replace(phrase, " ", "", -1)
 
 	direction := 1
-	if method == DECRYPT {
+	if method == DECIPHER {
 		direction = -1
 	}
 	key_len := len(key)
@@ -50,8 +50,8 @@ func main() {
 	fmt.Println("Key:", key)
 	fmt.Println("Phrase:", phrase)
 
-	enc := process(key, phrase, ENCRYPT)
-	fmt.Println("Encrypted:", enc)
-	decrypted := process(key, enc, DECRYPT)
-	fmt.Println("Derypted:", decrypted)
+	enc := process(key, phrase, ENCIPHER)
+	fmt.Println("Ciphertext:", enc)
+	plaintext := process(key, enc, DECIPHER)
+	fmt.Println("Plaintext:", plaintext)
 }
